@@ -117,30 +117,45 @@
                 }
             }
         }
+
+        function mergeUp(){
+            let value1 = $("#1-1").text();
+            console.log(value1);
+            let value2 = $("#2-1").text();
+            console.log(value2);
+            if (value1 == value2){
+                let newValue1 = value1 * 2;
+                $("#1-1").text(newValue1);
+                $("#2-1").text("");
+            }
+        }
         document.addEventListener("keydown", logKey);
 
         function logKey(key) {
             let keyPress = key.keyCode;
             console.log(keyPress);
-            if (keyPress === 37 /* key ===38 || key ===39 || 40*/ ) {
+            if (keyPress === 37) {
                 moveLeft();
-                initTile();
+                // initTile();
             } else if (keyPress === 39) {
                 moveRight();
-                initTile();
+                // initTile();
             } else if (keyPress === 38) {
+                mergeUp();
                 moveUp();
-                initTile();
+                // initTile();
             }
             else if (keyPress === 40){
                 moveDown();
-                initTile();
+                // initTile();
             }
         }
 
         gridBuild();
-        initTile();
-        initTile();
-        
+        // initTile();
+        // initTile();
+        $("#1-1").text(2);
+        $("#2-1").text(2);
+
     }
 })(jQuery);
