@@ -12,13 +12,21 @@
             $(".grid").height(100);
         }
 
+        // function gameOver(){
+        //     for (let x = 0; x < 4; x++){
+        //         for (let y = 0; y < 4; y++){
+        //             if ($("#" + x + "-" + y).text() != ""){
+        //                 alert("GAME OVER");
+        //             }
+        //         }
+        //     }
+        // }
+
         function initTile() {
             let x = Math.round(Math.random() * 3);
             let y = Math.round(Math.random() * 3);
             let empty = false;
             while (empty == false) {
-                console.log($("#" + x + "-" + y).text());
-                console.log(x, y);
                 if ($("#" + x + "-" + y).text() == "")
                     empty = true;
                 else {
@@ -32,12 +40,17 @@
 
         function moveLeft() {
             for (x = 0; x < 4; x++) {
-                for (y = 4; y > 0; y--) {
+                for (y = 0; y < 4; y++) {
                     if ($("#" + x + "-" + y).text() != "") {
-                        while ($("#" + x + "-" + (y - 1)).text() == "") {
+                        let yTemp = y - 1;
+                        while (yTemp >=0 && $("#" + x + "-" + yTemp).text() == ""){
+                            yTemp--;
+                        }
+                        yTemp++;
+                        if ($("#" + x + "-" + yTemp).text() == "") {
                             let valueSource = $("#" + x + "-" + y).text();
-                            let valueTarget = $("#" + x + "-" + (y - 1)).text();
-                            valueTarget = $("#" + x + "-" + (y - 1)).text(valueSource);
+                            let valueTarget = $("#" + x + "-" + yTemp).text();
+                            valueTarget = $("#" + x + "-" + yTemp).text(valueSource);
                             $("#" + x + "-" + y).text("");
                         }
                     }
@@ -47,12 +60,17 @@
 
         function moveRight() {
             for (x = 0; x < 4; x++) {
-                for (y = 0; y < 3; y++) {
+                for (y = 3; y >= 0; y--) {
                     if ($("#" + x + "-" + y).text() != "") {
-                        while ($("#" + x + "-" + (y + 1)).text() == "") {
+                        let yTemp = y + 1;
+                        while (yTemp <=3 && $("#" + x + "-" + yTemp).text() == ""){
+                            yTemp++;
+                        }
+                        yTemp--;
+                        if ($("#" + x + "-" + yTemp).text() == "") {
                             let valueSource = $("#" + x + "-" + y).text();
-                            let valueTarget = $("#" + x + "-" + (y + 1)).text();
-                            valueTarget = $("#" + x + "-" + (y + 1)).text(valueSource);
+                            let valueTarget = $("#" + x + "-" + yTemp).text();
+                            valueTarget = $("#" + x + "-" + yTemp ).text(valueSource);
                             $("#" + x + "-" + y).text("");
                         }
                     }
@@ -82,12 +100,17 @@
 
         function moveDown() {
             for (y = 0; y < 4; y++) {
-                for (x = 0; x < 3; x++) {
+                for (x = 3; x >= 0; x--) {
                     if ($("#" + x + "-" + y).text() != "") {
-                        while ($("#" + (x + 1) + "-" + y).text() == "") {
-                            valueSource = $("#" + x + "-" + y).text();
-                            valueTarget = $("#" + (x + 1) + "-" + y).text();
-                            valueTarget = $("#" + (x + 1) + "-" + y).text(valueSource);
+                        let xTemp = x + 1;
+                        while(xTemp <= 3 && $("#" + xTemp + "-" +y).text() == ""){
+                            xTemp++;
+                        }
+                        xTemp--;
+                        if ($("#" + xTemp + "-" + y).text() == "") {
+                            let valueSource = $("#" + x + "-" + y).text();
+                            let valueTarget = $("#" + xTemp + "-" + y).text();
+                            valueTarget = $("#" + xTemp + "-" + y).text(valueSource);
                             $("#" + x + "-" + y).text("");
                         }
                     }
@@ -118,6 +141,6 @@
         gridBuild();
         initTile();
         initTile();
-
+        
     }
 })(jQuery);
