@@ -119,14 +119,18 @@
         }
 
         function mergeUp(){
-            let value1 = $("#1-1").text();
-            console.log(value1);
-            let value2 = $("#2-1").text();
-            console.log(value2);
-            if (value1 == value2){
-                let newValue1 = value1 * 2;
-                $("#1-1").text(newValue1);
-                $("#2-1").text("");
+            for (y = 0; y <= 3; y++){
+                for (x = 0; x <= 3; x++){
+                    let value1 = $("#" + x + "-" + y).text();
+                    console.log(value1);
+                    let value2 = $("#"+(x+1)+"-" + y).text();
+                    console.log(value2);
+                    if (value1 && value1 == value2){
+                        let newValue1 = value1 * 2;
+                        $("#"+ x +"-" + y).text(newValue1);
+                        $("#"+(x+1)+"-" + y).text("");
+                    }
+                }
             }
         }
         document.addEventListener("keydown", logKey);
@@ -154,8 +158,11 @@
         gridBuild();
         // initTile();
         // initTile();
-        $("#1-1").text(2);
+        $("#0-1").text(2);
+        $("#1-2").text(2);
         $("#2-1").text(2);
+        $("#3-2").text(2);
+
 
     }
 })(jQuery);
