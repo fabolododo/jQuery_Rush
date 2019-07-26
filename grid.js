@@ -124,16 +124,74 @@
                     let value1 = $("#" + x + "-" + y).text();
                     if (value1 != "") {
                         let xTemp = x + 1;
-                        console.log(xTemp);
                         var value2;
                         while ((value2 = $("#" + xTemp + "-" + y).text()) == "" && xTemp <= 3) {
                             xTemp++;
-                            console.log(value2);
                         }
                         if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + xTemp + "-" + y).text("");
+                        }
+                    }
+                }
+            }
+        }
+
+        function mergeDown() {
+            for (y = 0; y <= 3; y++){
+                for (x = 3; x >= 0; x--){
+                    let value1 = $("#" + x + "-" + y).text();
+                    if (value1 != ""){
+                        let xTemp = x - 1;
+                        var value2;
+                        while ((value2 = $("#" + xTemp + "-" + y).text()) == "" && xTemp >= 0) {
+                            xTemp--;
+                        }
+                        if (value1 && value1 == value2){
+                            let newValue1 = value1 * 2;
+                            $("#" + x + "-" + y).text(newValue1);
+                            $("#" + xTemp + "-" + y).text("");
+                        }
+                    }
+                }
+            }
+        }
+
+        function mergeRight() {
+            for (x = 0; x <= 3; x++){
+                for (y = 3; y >= 0; y--){
+                    let value1 = $("#"+ x + "-" + y).text();
+                    if (value1 != ""){
+                        let yTemp = y - 1;
+                        var value2;
+                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp >= 0){
+                            yTemp--;
+                        }
+                        if (value1 && value1 == value2){
+                            let newValue1 = value1 * 2;
+                            $("#" + x + "-" + y).text(newValue1);
+                            $("#" + x + "-" + yTemp).text("");
+                        }
+                    }
+                }
+            }
+        }
+
+        function mergeLeft() {
+            for (x = 0; x <= 3; x++){
+                for (y = 0; y <= 3; y++){
+                    let value1 = $("#"+ x + "-" + y).text();
+                    if (value1 != ""){
+                        let yTemp = y + 1;
+                        var value2;
+                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp <= 3){
+                            yTemp++;
+                        }
+                        if (value1 && value1 == value2){
+                            let newValue1 = value1 * 2;
+                            $("#" + x + "-" + y).text(newValue1);
+                            $("#" + x + "-" + yTemp).text("");
                         }
                     }
                 }
@@ -145,29 +203,27 @@
             let keyPress = key.keyCode;
             console.log(keyPress);
             if (keyPress === 37) {
+                mergeLeft();
                 moveLeft();
-                // initTile();
+                initTile();
             } else if (keyPress === 39) {
+                mergeRight();
                 moveRight();
-                // initTile();
+                initTile();
             } else if (keyPress === 38) {
                 mergeUp();
                 moveUp();
-                // initTile();
+                initTile();
             } else if (keyPress === 40) {
+                mergeDown();
                 moveDown();
-                // initTile();
+                initTile();
             }
         }
 
         gridBuild();
-        // initTile();
-        // initTile();
-        $("#0-0").text(4);
-        $("#1-0").text(2);
-        $("#2-0").text(2);
-        $("#3-0").text(2);
-
+        initTile();
+        initTile();
 
     }
 })(jQuery);
