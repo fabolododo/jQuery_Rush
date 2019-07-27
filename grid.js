@@ -11,6 +11,16 @@
             $(".grid").width(100);
             $(".grid").height(100);
         }
+        
+        var mergeControl;
+        var moveControl;
+        var score = 0;
+
+
+        function scorefunction(){
+            $("#score").append('<div id="compteurScore"></div>');
+            $("#compteurScore").html("<p>Score</p><p>" + score + "</p>");
+        }
 
 
         function initTile() {
@@ -29,8 +39,6 @@
 
         }
 
-        var mergeControl;
-        var moveControl;
 
         function moveLeft() {
             moveControl = false;
@@ -135,6 +143,7 @@
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + xTemp + "-" + y).text("");
+                            score += newValue1;
                             mergeControl = true;
                         }
                     }
@@ -157,6 +166,7 @@
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + xTemp + "-" + y).text("");
+                            score += newValue1;
                             mergeControl = true;
                         }
                     }
@@ -179,6 +189,7 @@
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + x + "-" + yTemp).text("");
+                            score += newValue1;
                             mergeControl = true;
                         }
                     }
@@ -201,6 +212,7 @@
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + x + "-" + yTemp).text("");
+                            score += newValue1;
                             mergeControl = true;
                         }
                     }
@@ -242,51 +254,99 @@
                 }
 
             }
-            alert("Game Over");
+            $("#endGame").text("Game Over");
         }
+
+        function color(){
+            for (x = 0; x < 4; x++){
+                for (y = 0; y < 4; y++){
+                    let number = $("#" + x + "-" + y).text();
+                    if(number == ""){
+                        $("#" + x + "-" + y).css("background-color", "#ccc0b3");
+                    }
+                    else if (number == 2)
+                        $("#" + x + "-" + y).css("background-color", "#eee4da");
+                        else if (number == 4)
+                        $("#" + x + "-" + y).css("background-color", "#ede0c8");
+                        else if (number == 8)
+                        $("#" + x + "-" + y).css("background-color", "#f2b179");
+                        else if (number == 16)
+                        $("#" + x + "-" + y).css("background-color", "#f59563");
+                        else if (number == 32)
+                        $("#" + x + "-" + y).css("background-color", "#f67c5f");
+                        else if (number == 64)
+                        $("#" + x + "-" + y).css("background-color", "#f65e3b");
+                        else if (number == 128)
+                        $("#" + x + "-" + y).css("background-color", "#edcf72");
+                        else if (number == 256)
+                        $("#" + x + "-" + y).css("background-color", "#edcc61");
+                        else if (number == 512)
+                        $("#" + x + "-" + y).css("background-color", "#edc850");
+                        else if (number == 1024)
+                        $("#" + x + "-" + y).css("background-color", "#edc53f");
+                        else if (number == 2048)
+                        $("#" + x + "-" + y).css("background-color", "#edc22e");
+                        else if (number > 2048)
+                        $("#" + x + "-" + y).css("background-color", "#3c3a32");
+                }
+            }
+
+        }
+
 
         document.addEventListener("keydown", logKey);
 
         function logKey(key) {
             let keyPress = key.keyCode;
-            console.log(keyPress);
             if (keyPress === 37) {
                 mergeLeft();
+                $("#scoreDiv").text(score);
                 moveLeft();
                 if (mergeControl == true || moveControl == true){
                     initTile();
                 }
+                color();
                 gameOver();
             }
             else if (keyPress === 39) {
                 mergeRight();
+                $("#scoreDiv").text(score);
                 moveRight();
                 if (mergeControl == true || moveControl == true){
                     initTile();
                 }
+                color();
                 gameOver();
             }
             else if (keyPress === 38) {
                 mergeUp();
+                $("#scoreDiv").text(score);
                 moveUp();
                 if (mergeControl == true || moveControl == true){
                     initTile();
                 }
-                    gameOver();
+                color();
+                gameOver();
             }
             else if (keyPress === 40) {
                 mergeDown();
+                $("#scoreDiv").text(score);
                 moveDown();
                 if (mergeControl == true || moveControl == true){
                     initTile();
                 }
+                color();
                 gameOver();
             }
+
         }
 
+
         gridBuild();
+        scorefunction();
         initTile();
         initTile();
+        color();
 
     }
 })(jQuery);
