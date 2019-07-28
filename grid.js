@@ -12,9 +12,15 @@
             $(".grid").height(100);
         }
 
+        function restartBuild(){
+            $("#restart").append('<div id="restartButton">Restart</div>');
+        }
+
         var mergeControl;
         var moveControl;
         var score = 0;
+        var gameOverControl = 0;
+        
 
 
         function scorefunction() {
@@ -254,7 +260,11 @@
                 }
 
             }
-            $("#endGame").text("Game Over");
+            if (gameOverControl == 0){
+                gameOverControl++;
+                $("#end").append('<div id="endGame"></div>')
+                $("#endGame").text("Game Over");
+            }
         }
 
         function color() {
@@ -312,7 +322,7 @@
                 for (x = 0; x < 4; x++) {
                     for (y = 0; y < 4; y++) {
                         mergeLeft();
-                        $("#scoreDiv").text(score);
+                        scorefunction();
                         moveLeft();
                         if (mergeControl == true || moveControl == true) {
                             initTile();
@@ -325,7 +335,7 @@
                 for (x = 0; x < 4; x++) {
                     for (y = 0; y < 4; y++) {
                         mergeRight();
-                        $("#scoreDiv").text(score);
+                        scorefunction();
                         moveRight();
                         if (mergeControl == true || moveControl == true) {
                             initTile();
@@ -338,7 +348,7 @@
                 for (x = 0; x < 4; x++) {
                     for (y = 0; y < 4; y++) {
                         mergeUp();
-                        $("#scoreDiv").text(score);
+                        scorefunction();
                         moveUp();
                         if (mergeControl == true || moveControl == true) {
                             initTile();
@@ -351,7 +361,7 @@
                 for (x = 0; x < 4; x++) {
                     for (y = 0; y < 4; y++) {
                         mergeDown();
-                        $("#scoreDiv").text(score);
+                        scorefunction();
                         moveDown();
                         if (mergeControl == true || moveControl == true) {
                             initTile();
@@ -364,11 +374,18 @@
 
         }
 
+        $("#restart").on("click", restart);
+
+        function restart(){
+            location.reload(true);
+        }
+
 
         gridBuild();
         scorefunction();
         initTile();
         initTile();
+        restartBuild();
         color();
 
     }
