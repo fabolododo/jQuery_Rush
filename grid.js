@@ -1,5 +1,6 @@
 (function ($) {
     $.fn.init2048 = function () {
+
         function gridBuild() {
             for (var rows = 0; rows < 4; rows++) {
 
@@ -41,7 +42,7 @@
                     y = Math.round(Math.random() * 3);
                 }
             }
-            $("#" + x + "-" + y).html(Math.random() < 0.9 ? 2 : 4);
+            $("#" + x + "-" + y).html(Math.random() < 0.9 ? 2 : 4).fadeIn();
 
         }
 
@@ -147,8 +148,8 @@
                         }
                         if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
-                            $("#" + x + "-" + y).text(newValue1);
-                            $("#" + xTemp + "-" + y).text("");
+                            $("#" + x + "-" + y).text(newValue1).fadeIn();
+                            $("#" + xTemp + "-" + y).text("").fadeIn();
                             score += newValue1;
                             mergeControl = true;
                         }
@@ -170,8 +171,8 @@
                         }
                         if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
-                            $("#" + x + "-" + y).text(newValue1);
-                            $("#" + xTemp + "-" + y).text("");
+                            $("#" + x + "-" + y).text(newValue1).fadeIn();
+                            $("#" + xTemp + "-" + y).text("").fadeIn();
                             score += newValue1;
                             mergeControl = true;
                         }
@@ -193,8 +194,8 @@
                         }
                         if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
-                            $("#" + x + "-" + y).text(newValue1);
-                            $("#" + x + "-" + yTemp).text("");
+                            $("#" + x + "-" + y).text(newValue1).fadeIn();
+                            $("#" + x + "-" + yTemp).text("").fadeIn();
                             score += newValue1;
                             mergeControl = true;
                         }
@@ -216,8 +217,8 @@
                         }
                         if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
-                            $("#" + x + "-" + y).text(newValue1);
-                            $("#" + x + "-" + yTemp).text("");
+                            $("#" + x + "-" + y).text(newValue1).fadeIn();
+                            $("#" + x + "-" + yTemp).text("").fadeIn();
                             score += newValue1;
                             mergeControl = true;
                         }
