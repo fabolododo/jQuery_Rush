@@ -11,13 +11,13 @@
             $(".grid").width(100);
             $(".grid").height(100);
         }
-        
+
         var mergeControl;
         var moveControl;
         var score = 0;
 
 
-        function scorefunction(){
+        function scorefunction() {
             $("#score").append('<div id="compteurScore"></div>');
             $("#compteurScore").html("<p>Score</p><p>" + score + "</p>");
         }
@@ -153,16 +153,16 @@
 
         function mergeDown() {
             mergeControl = false;
-            for (y = 0; y <= 3; y++){
-                for (x = 3; x >= 0; x--){
+            for (y = 0; y <= 3; y++) {
+                for (x = 3; x >= 0; x--) {
                     let value1 = $("#" + x + "-" + y).text();
-                    if (value1 != ""){
+                    if (value1 != "") {
                         let xTemp = x - 1;
                         var value2;
                         while ((value2 = $("#" + xTemp + "-" + y).text()) == "" && xTemp >= 0) {
                             xTemp--;
                         }
-                        if (value1 && value1 == value2){
+                        if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + xTemp + "-" + y).text("");
@@ -176,16 +176,16 @@
 
         function mergeRight() {
             mergeControl = false;
-            for (x = 0; x <= 3; x++){
-                for (y = 3; y >= 0; y--){
-                    let value1 = $("#"+ x + "-" + y).text();
-                    if (value1 != ""){
+            for (x = 0; x <= 3; x++) {
+                for (y = 3; y >= 0; y--) {
+                    let value1 = $("#" + x + "-" + y).text();
+                    if (value1 != "") {
                         let yTemp = y - 1;
                         var value2;
-                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp >= 0){
+                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp >= 0) {
                             yTemp--;
                         }
-                        if (value1 && value1 == value2){
+                        if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + x + "-" + yTemp).text("");
@@ -199,16 +199,16 @@
 
         function mergeLeft() {
             mergeControl = false;
-            for (x = 0; x <= 3; x++){
-                for (y = 0; y <= 3; y++){
-                    let value1 = $("#"+ x + "-" + y).text();
-                    if (value1 != ""){
+            for (x = 0; x <= 3; x++) {
+                for (y = 0; y <= 3; y++) {
+                    let value1 = $("#" + x + "-" + y).text();
+                    if (value1 != "") {
                         let yTemp = y + 1;
                         var value2;
-                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp <= 3){
+                        while ((value2 = $("#" + x + "-" + yTemp).text()) == "" && yTemp <= 3) {
                             yTemp++;
                         }
-                        if (value1 && value1 == value2){
+                        if (value1 && value1 == value2) {
                             let newValue1 = value1 * 2;
                             $("#" + x + "-" + y).text(newValue1);
                             $("#" + x + "-" + yTemp).text("");
@@ -220,9 +220,9 @@
             }
         }
 
-        function gameOver(){
-            for (x = 0; x <= 3 ; x++){
-                for (y = 0; y <= 3; y++){
+        function gameOver() {
+            for (x = 0; x <= 3; x++) {
+                for (y = 0; y <= 3; y++) {
                     let xNegatif = x - 1;
                     let xPositif = x + 1;
                     let yNegatif = y - 1;
@@ -233,21 +233,21 @@
                     let cellDown = $("#" + xPositif + "-" + y).text();
                     let cellLeft = $("#" + x + "-" + yNegatif).text();
 
-                    if (curentCell){
-                        if (xNegatif < 0){
+                    if (curentCell) {
+                        if (xNegatif < 0) {
                             cellTop = $("#" + xNegatif + "-" + y).text(42);
                         }
-                        if (xPositif > 3){
+                        if (xPositif > 3) {
                             cellDown = $("#" + xPositif + "-" + y).text(42);
                         }
-                        if (yNegatif < 0){
+                        if (yNegatif < 0) {
                             cellLeft = $("#" + x + "-" + yNegatif).text(42);
                         }
-                        if (yPositif > 3){
+                        if (yPositif > 3) {
                             cellRight = $("#" + x + "-" + yPositif).text(42);
                         }
 
-                        if ((cellTop == "" || cellRight == "" || cellDown == "" || cellLeft == "") || (curentCell == cellTop || curentCell == cellRight || curentCell == cellLeft || curentCell == cellDown)){
+                        if ((cellTop == "" || cellRight == "" || cellDown == "" || cellLeft == "") || (curentCell == cellTop || curentCell == cellRight || curentCell == cellLeft || curentCell == cellDown)) {
                             return false;
                         }
                     }
@@ -257,37 +257,47 @@
             $("#endGame").text("Game Over");
         }
 
-        function color(){
-            for (x = 0; x < 4; x++){
-                for (y = 0; y < 4; y++){
+        function color() {
+            for (x = 0; x < 4; x++) {
+                for (y = 0; y < 4; y++) {
                     let number = $("#" + x + "-" + y).text();
-                    if(number == ""){
+                    if (number == "") {
                         $("#" + x + "-" + y).css("background-color", "#ccc0b3");
-                    }
-                    else if (number == 2)
-                        $("#" + x + "-" + y).css("background-color", "#eee4da");
-                        else if (number == 4)
-                        $("#" + x + "-" + y).css("background-color", "#ede0c8");
-                        else if (number == 8)
+                    } else if (number == 2) {
+                        $("#" + x + "-" + y).css({"background-color" : "#eee4da" ,"color" : "#776e65"});
+                    } else if (number == 4) {
+                        $("#" + x + "-" + y).css({"background-color": "#ede0c8", "color" : "#776e65"});
+                    } else if (number == 8) {
                         $("#" + x + "-" + y).css("background-color", "#f2b179");
-                        else if (number == 16)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 16) {
                         $("#" + x + "-" + y).css("background-color", "#f59563");
-                        else if (number == 32)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 32) {
                         $("#" + x + "-" + y).css("background-color", "#f67c5f");
-                        else if (number == 64)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 64) {
                         $("#" + x + "-" + y).css("background-color", "#f65e3b");
-                        else if (number == 128)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 128) {
                         $("#" + x + "-" + y).css("background-color", "#edcf72");
-                        else if (number == 256)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 256) {
                         $("#" + x + "-" + y).css("background-color", "#edcc61");
-                        else if (number == 512)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 512) {
                         $("#" + x + "-" + y).css("background-color", "#edc850");
-                        else if (number == 1024)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 1024) {
                         $("#" + x + "-" + y).css("background-color", "#edc53f");
-                        else if (number == 2048)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number == 2048) {
                         $("#" + x + "-" + y).css("background-color", "#edc22e");
-                        else if (number > 2048)
+                        $("#" + x + "-" + y).css("color", "white");
+                    } else if (number > 2048) {
                         $("#" + x + "-" + y).css("background-color", "#3c3a32");
+                        $("#" + x + "-" + y).css("color", "white");
+                    }
                 }
             }
 
@@ -299,44 +309,57 @@
         function logKey(key) {
             let keyPress = key.keyCode;
             if (keyPress === 37) {
-                mergeLeft();
-                $("#scoreDiv").text(score);
-                moveLeft();
-                if (mergeControl == true || moveControl == true){
-                    initTile();
+                for (x = 0; x < 4; x++) {
+                    for (y = 0; y < 4; y++) {
+                        mergeLeft();
+                        $("#scoreDiv").text(score);
+                        moveLeft();
+                        if (mergeControl == true || moveControl == true) {
+                            initTile();
+                        }
+                        gameOver();
+                        color();
+                    }
                 }
-                color();
-                gameOver();
-            }
-            else if (keyPress === 39) {
-                mergeRight();
-                $("#scoreDiv").text(score);
-                moveRight();
-                if (mergeControl == true || moveControl == true){
-                    initTile();
+            } else if (keyPress === 39) {
+                for (x = 0; x < 4; x++) {
+                    for (y = 0; y < 4; y++) {
+                        mergeRight();
+                        $("#scoreDiv").text(score);
+                        moveRight();
+                        if (mergeControl == true || moveControl == true) {
+                            initTile();
+                        }
+                        gameOver();
+                        color();
+                    }
                 }
-                color();
-                gameOver();
-            }
-            else if (keyPress === 38) {
-                mergeUp();
-                $("#scoreDiv").text(score);
-                moveUp();
-                if (mergeControl == true || moveControl == true){
-                    initTile();
+            } else if (keyPress === 38) {
+                for (x = 0; x < 4; x++) {
+                    for (y = 0; y < 4; y++) {
+                        mergeUp();
+                        $("#scoreDiv").text(score);
+                        moveUp();
+                        if (mergeControl == true || moveControl == true) {
+                            initTile();
+                        }
+                        gameOver();
+                        color();
+                    }
                 }
-                color();
-                gameOver();
-            }
-            else if (keyPress === 40) {
-                mergeDown();
-                $("#scoreDiv").text(score);
-                moveDown();
-                if (mergeControl == true || moveControl == true){
-                    initTile();
+            } else if (keyPress === 40) {
+                for (x = 0; x < 4; x++) {
+                    for (y = 0; y < 4; y++) {
+                        mergeDown();
+                        $("#scoreDiv").text(score);
+                        moveDown();
+                        if (mergeControl == true || moveControl == true) {
+                            initTile();
+                        }
+                        gameOver();
+                        color();
+                    }
                 }
-                color();
-                gameOver();
             }
 
         }
